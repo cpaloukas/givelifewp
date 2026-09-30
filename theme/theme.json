@@ -1,0 +1,227 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"useRootPaddingAwareAlignments": true,
+		"layout": {
+			"contentSize": "640px",
+			"wideSize": "1120px"
+		},
+		"color": {
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"defaultDuotone": false,
+			"palette": [
+				{
+					"slug": "base",
+					"name": "Warm white",
+					"color": "#FBF7F2"
+				},
+				{
+					"slug": "surface",
+					"name": "Linen",
+					"color": "#F3EBE3"
+				},
+				{
+					"slug": "contrast",
+					"name": "Ink",
+					"color": "#231C1E"
+				},
+				{
+					"slug": "muted",
+					"name": "Soft ink",
+					"color": "#5F5559"
+				},
+				{
+					"slug": "primary",
+					"name": "Blood red",
+					"color": "#A51C24"
+				},
+				{
+					"slug": "primary-soft",
+					"name": "Blush",
+					"color": "#F2DAD6"
+				}
+			]
+		},
+		"typography": {
+			"defaultFontSizes": false,
+			"fluid": true,
+			"fontFamilies": [
+				{
+					"slug": "heading",
+					"name": "Vollkorn",
+					"fontFamily": "Vollkorn, Georgia, serif",
+					"fontFace": [
+						{
+							"fontFamily": "Vollkorn",
+							"fontStyle": "normal",
+							"fontWeight": "400 900",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/Vollkorn-VariableFont_wght.woff2"
+							]
+						},
+						{
+							"fontFamily": "Vollkorn",
+							"fontStyle": "italic",
+							"fontWeight": "400 900",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/Vollkorn-Italic-VariableFont_wght.woff2"
+							]
+						}
+					]
+				},
+				{
+					"slug": "body",
+					"name": "Manrope",
+					"fontFamily": "Manrope, system-ui, sans-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Manrope",
+							"fontStyle": "normal",
+							"fontWeight": "200 800",
+							"fontDisplay": "swap",
+							"src": [
+								"file:./assets/fonts/Manrope-VariableFont_wght.woff2"
+							]
+						}
+					]
+				}
+			],
+			"fontSizes": [
+				{
+					"slug": "small",
+					"name": "Small",
+					"size": "0.875rem",
+					"fluid": false
+				},
+				{
+					"slug": "medium",
+					"name": "Medium",
+					"size": "1.0625rem",
+					"fluid": {
+						"min": "1rem",
+						"max": "1.125rem"
+					}
+				},
+				{
+					"slug": "large",
+					"name": "Large",
+					"size": "1.375rem",
+					"fluid": {
+						"min": "1.1875rem",
+						"max": "1.5rem"
+					}
+				},
+				{
+					"slug": "x-large",
+					"name": "Extra large",
+					"size": "2rem",
+					"fluid": {
+						"min": "1.625rem",
+						"max": "2.375rem"
+					}
+				},
+				{
+					"slug": "xx-large",
+					"name": "Huge",
+					"size": "3.5rem",
+					"fluid": {
+						"min": "2.5rem",
+						"max": "4.25rem"
+					}
+				}
+			]
+		},
+		"spacing": {
+			"defaultSpacingSizes": false,
+			"units": [
+				"px",
+				"rem",
+				"em",
+				"%",
+				"vh",
+				"vw"
+			],
+			"spacingSizes": [
+				{
+					"slug": "20",
+					"name": "XS",
+					"size": "0.5rem"
+				},
+				{
+					"slug": "30",
+					"name": "S",
+					"size": "1rem"
+				},
+				{
+					"slug": "40",
+					"name": "M",
+					"size": "clamp(1.25rem, 2.5vw, 1.75rem)"
+				},
+				{
+					"slug": "50",
+					"name": "L",
+					"size": "clamp(1.75rem, 4vw, 2.75rem)"
+				},
+				{
+					"slug": "60",
+					"name": "XL",
+					"size": "clamp(2.5rem, 6vw, 4.5rem)"
+				}
+			]
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var:preset|color|base",
+			"text": "var:preset|color|contrast"
+		},
+		"spacing": {
+			"blockGap": "var:preset|spacing|30",
+			"padding": {
+				"left": "var:preset|spacing|40",
+				"right": "var:preset|spacing|40"
+			}
+		},
+		"typography": {
+			"fontFamily": "var:preset|font-family|body",
+			"fontSize": "var:preset|font-size|medium",
+			"lineHeight": "1.65"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|heading",
+					"fontWeight": "500",
+					"lineHeight": "1.12",
+					"letterSpacing": "-0.01em"
+				}
+			},
+			"link": {
+				"color": {
+					"text": "var:preset|color|primary"
+				},
+				"typography": {
+					"textDecoration": "underline"
+				},
+				":hover": {
+					"typography": {
+						"textDecoration": "none"
+					}
+				},
+				":focus-visible": {
+					"outline": {
+						"color": "var:preset|color|primary",
+						"style": "solid",
+						"width": "2px",
+						"offset": "3px"
+					}
+				}
+			}
+		}
+	}
+}
