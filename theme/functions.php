@@ -21,7 +21,7 @@ add_action( 'after_setup_theme', 'givelifewp_setup' );
  * Front page styles and motion.
  */
 function givelifewp_enqueue_assets() {
-	if ( ! is_front_page() ) {
+	if ( ! is_front_page() && ! is_page() ) {
 		return;
 	}
 
