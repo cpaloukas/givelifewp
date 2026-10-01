@@ -218,6 +218,31 @@ html {
 	transform: rotate(-45deg) translateY(0.04em);
 }
 
+/* Header logo: sized by height, aspect ratio reserved so it never shifts the layout */
+.givelifewp-logo {
+	flex-shrink: 0;
+	margin: 0;
+	line-height: 0;
+}
+
+.givelifewp-logo a {
+	display: inline-block;
+	border-radius: 4px;
+}
+
+.givelifewp-logo img {
+	display: block;
+	width: auto;
+	height: 40px;
+	aspect-ratio: 800 / 190;
+}
+
+@media (max-width: 599px) {
+	.givelifewp-logo img {
+		height: 32px;
+	}
+}
+
 .givelifewp-nav a {
 	color: var(--glwp-ink);
 	text-decoration: none;
