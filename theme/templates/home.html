@@ -2,7 +2,15 @@
 <div class="wp-block-group givelifewp-site"><!-- wp:template-part {"slug":"header","tagName":"header","align":"wide","className":"givelifewp-header"} /-->
 
 <!-- wp:group {"tagName":"main","className":"givelifewp-main","layout":{"type":"constrained"}} -->
-<main class="wp-block-group givelifewp-main"><!-- wp:query {"queryId":2,"query":{"inherit":true,"perPage":10},"className":"givelifewp-posts"} -->
+<main class="wp-block-group givelifewp-main"><!-- wp:heading {"level":1,"className":"givelifewp-title","fontSize":"xx-large"} -->
+<h1 class="wp-block-heading givelifewp-title has-xx-large-font-size">News and reminders</h1>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"givelifewp-lead","textColor":"muted","fontSize":"large"} -->
+<p class="givelifewp-lead has-muted-color has-text-color has-large-font-size">Gentle nudges to give, and what's new at GiveLifeWP.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:query {"queryId":2,"query":{"inherit":true,"perPage":10},"className":"givelifewp-posts"} -->
 <div class="wp-block-query givelifewp-posts"><!-- wp:post-template -->
 <!-- wp:group {"className":"givelifewp-post-card","layout":{"type":"constrained"}} -->
 <div class="wp-block-group givelifewp-post-card"><!-- wp:post-date {"className":"givelifewp-label"} /-->
