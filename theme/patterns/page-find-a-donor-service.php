@@ -11,13 +11,127 @@
  */
 
 ?>
-<!-- wp:paragraph {"className":"givelifewp-lead","textColor":"muted","fontSize":"large"} -->
-<p class="givelifewp-lead has-muted-color has-text-color has-large-font-size">Booking, eligibility checks and donation sessions all live with your official blood service. Find yours below.</p>
+<!-- wp:list {"className":"givelifewp-chips givelifewp-jump"} -->
+<ul class="wp-block-list givelifewp-chips givelifewp-jump"><!-- wp:list-item -->
+<li><a href="#africa">Africa</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#asia">Asia</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#europe">Europe</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#north-america">North America</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#oceania">Oceania</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="#south-america">South America</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"givelifewp-muted"} -->
+<p class="givelifewp-muted">57 countries so far, listed alphabetically, with more to come. Some countries run several services by region; where that’s the case we link to a national starting point. Spotted a wrong or missing link? <a href="mailto:hello@givelifewp.org">Let us know</a>.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"textColor":"muted","fontSize":"small"} -->
-<p class="has-muted-color has-text-color has-small-font-size">We're starting with Europe and the Americas, listed alphabetically, and adding more over time. Some countries have several services by region; where that's the case we link to a national starting point. Spotted a wrong or missing link? Email <a href="mailto:hello@givelifewp.org">hello@givelifewp.org</a>.</p>
-<!-- /wp:paragraph -->
+<!-- wp:heading {"anchor":"africa"} -->
+<h2 class="wp-block-heading" id="africa">Africa</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"className":"givelifewp-services"} -->
+<ul class="wp-block-list givelifewp-services"><!-- wp:list-item -->
+<li><strong>Ghana</strong> <a href="https://nbs.gov.gh/">National Blood Service</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Kenya</strong> <a href="https://www.ktta.go.ke/">Kenya Tissue and Transplant Authority</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Nigeria</strong> <a href="https://nbsc.gov.ng/">National Blood Service Agency</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Rwanda</strong> <a href="https://www.rbc.gov.rw/">Rwanda Biomedical Centre</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>South Africa</strong> <a href="https://www.sanbs.org.za/">South African National Blood Service</a><a href="https://www.wcbs.org.za/">Western Cape Blood Service</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Tanzania</strong> <a href="https://www.nbts.go.tz/">National Blood Transfusion Service</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Uganda</strong> <a href="https://www.ubts.go.ug/">Uganda Blood Transfusion Service</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"anchor":"asia"} -->
+<h2 class="wp-block-heading" id="asia">Asia</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"className":"givelifewp-services"} -->
+<ul class="wp-block-list givelifewp-services"><!-- wp:list-item -->
+<li><strong>Hong Kong</strong> <a href="https://www5.ha.org.hk/rcbts/?lang=en">Hong Kong Red Cross Blood Transfusion Service</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>India</strong> <a href="https://eraktkosh.mohfw.gov.in/eraktkoshPortal/">e-RaktKosh (national blood bank finder)</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Indonesia</strong> <a href="https://pmi.or.id/">Indonesian Red Cross (PMI)</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Israel</strong> <a href="https://www.mdais.org/en">Magen David Adom</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Japan</strong> <a href="https://www.jrc.or.jp/donation/">Japanese Red Cross Society</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Malaysia</strong> <a href="https://pdn.gov.my/v2/">National Blood Centre</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Philippines</strong> <a href="https://redcross.org.ph/give-blood/">Philippine Red Cross</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Singapore</strong> <a href="https://www.hsa.gov.sg/blood-donation">Health Sciences Authority</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>South Korea</strong> <a href="https://www.bloodinfo.net/">Korean Red Cross Blood Services</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Sri Lanka</strong> <a href="https://nbts.health.gov.lk/">National Blood Transfusion Service</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Taiwan</strong> <a href="https://www.blood.org.tw/">Taiwan Blood Services Foundation</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Thailand</strong> <a href="https://www.blooddonationthai.com/">Thai Red Cross National Blood Centre</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Türkiye</strong> <a href="https://www.kanver.org/">Turkish Red Crescent (Kızılay)</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
 
 <!-- wp:heading {"anchor":"europe"} -->
 <h2 class="wp-block-heading" id="europe">Europe</h2>
@@ -29,7 +143,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Belgium</strong> <a href="https://www.rodekruis.be/">Red Cross Flanders</a> · <a href="https://www.donneurdesang.be/">Red Cross Wallonia-Brussels</a></li>
+<li><strong>Belgium</strong> <a href="https://www.rodekruis.be/">Red Cross Flanders</a><a href="https://www.donneurdesang.be/">Red Cross Wallonia-Brussels</a></li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -73,7 +187,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Italy</strong> <a href="https://www.centronazionalesangue.it/">National Blood Centre</a> · <a href="https://www.avis.it/">AVIS</a></li>
+<li><strong>Italy</strong> <a href="https://www.centronazionalesangue.it/">National Blood Centre</a><a href="https://www.avis.it/">AVIS</a></li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -113,11 +227,11 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Spain</strong> <a href="https://www.donarsangre.org/">Services are regional. Cruz Roja in Madrid</a></li>
+<li><strong>Spain</strong> <a href="https://www.donarsangre.org/">Regional services; Cruz Roja in Madrid</a></li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Sweden</strong> <a href="https://geblod.nu/">GeBlod.nu (Sweden's regions)</a></li>
+<li><strong>Sweden</strong> <a href="https://geblod.nu/">GeBlod.nu (Sweden’s regions)</a></li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -125,7 +239,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>United Kingdom</strong> <a href="https://www.blood.co.uk/">England: NHS Blood and Transplant</a> · <a href="https://www.scotblood.co.uk/">Scotland: Scottish National Blood Transfusion Service</a> · <a href="https://www.welsh-blood.org.uk/">Wales: Welsh Blood Service</a> · <a href="https://nibts.hscni.net/">Northern Ireland: Northern Ireland Blood Transfusion Service</a></li>
+<li><strong>United Kingdom</strong> <a href="https://www.blood.co.uk/">England: NHS Blood and Transplant</a><a href="https://www.scotblood.co.uk/">Scotland: SNBTS</a><a href="https://www.welsh-blood.org.uk/">Wales: Welsh Blood Service</a><a href="https://nibts.hscni.net/">Northern Ireland: NIBTS</a></li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -135,7 +249,7 @@
 
 <!-- wp:list {"className":"givelifewp-services"} -->
 <ul class="wp-block-list givelifewp-services"><!-- wp:list-item -->
-<li><strong>Canada</strong> <a href="https://www.blood.ca/en">Canadian Blood Services</a> · <a href="https://www.hemaquebec.ca/">Québec: Héma-Québec</a></li>
+<li><strong>Canada</strong> <a href="https://www.blood.ca/en">Canadian Blood Services</a><a href="https://www.hemaquebec.ca/">Québec: Héma-Québec</a></li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -143,7 +257,21 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>United States</strong> <a href="https://www.redcrossblood.org/">American Red Cross</a> · <a href="https://americasblood.org/">America's Blood Centers (community blood centers)</a></li>
+<li><strong>United States</strong> <a href="https://www.redcrossblood.org/">American Red Cross</a><a href="https://americasblood.org/">America’s Blood Centers</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"anchor":"oceania"} -->
+<h2 class="wp-block-heading" id="oceania">Oceania</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list {"className":"givelifewp-services"} -->
+<ul class="wp-block-list givelifewp-services"><!-- wp:list-item -->
+<li><strong>Australia</strong> <a href="https://www.lifeblood.com.au/">Australian Red Cross Lifeblood</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>New Zealand</strong> <a href="https://www.nzblood.co.nz/">New Zealand Blood Service</a></li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -179,6 +307,6 @@
 
 <!-- wp:group {"className":"givelifewp-note","layout":{"type":"constrained"}} -->
 <div class="wp-block-group givelifewp-note"><!-- wp:paragraph -->
-<p><strong>Not listed?</strong> Search for "blood donation" with your country or city name and look for a national health service, Red Cross or Red Crescent society, or hospital blood bank. Your doctor or local hospital can also point you in the right direction.</p>
+<p><strong>Not listed?</strong> Search for “blood donation” with your country or city name and look for a national health service, Red Cross or Red Crescent society, or hospital blood bank. Your doctor or local hospital can also point you in the right direction.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->

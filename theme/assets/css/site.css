@@ -1,79 +1,255 @@
 /**
  * GiveLifeWP site styles.
+ * Inlined in <head> (minified) so the first paint needs no extra request.
+ * Icons are tiny inline SVG masks, so they take the text colour.
  * Motion only runs when the visitor has not asked for reduced motion.
  */
 
-/* Page shell */
-.givelifewp-site {
-	--givelifewp-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+:root {
+	--glwp-red: var(--wp--preset--color--primary);
+	--glwp-red-dark: #8A141B;
+	--glwp-blush: var(--wp--preset--color--primary-soft);
+	--glwp-ink: var(--wp--preset--color--contrast);
+	--glwp-muted: var(--wp--preset--color--muted);
+	--glwp-base: var(--wp--preset--color--base);
+	--glwp-linen: var(--wp--preset--color--surface);
+	--glwp-line: #E7DCD3;
+	--glwp-radius: 20px;
+	--glwp-shadow: 0 1px 2px rgb(35 28 30 / 0.05), 0 18px 40px -20px rgb(35 28 30 / 0.28);
+	--glwp-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+	--glwp-gap: clamp(3.5rem, 9vw, 7.5rem);
+	--i-drop: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z'/%3E%3C/svg%3E");
+	--i-clock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E");
+	--i-people: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='8' r='3'/%3E%3Cpath d='M3 20a6 6 0 0 1 12 0'/%3E%3Ccircle cx='17' cy='9' r='2.5'/%3E%3Cpath d='M16 14.3a5 5 0 0 1 5 4.7'/%3E%3C/svg%3E");
+	--i-pulse: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12h4l2-5 4 10 2-5h6'/%3E%3C/svg%3E");
+	--i-platelets: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='8' cy='9' r='3'/%3E%3Ccircle cx='16.5' cy='8' r='2.5'/%3E%3Ccircle cx='13.5' cy='16' r='3.5'/%3E%3C/svg%3E");
+	--i-plasma: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 3h10v11a5 5 0 0 1-10 0z'/%3E%3Cpath d='M7 9h10M12 19v2'/%3E%3C/svg%3E");
+	--i-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7'/%3E%3C/svg%3E");
+	--i-out: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 16L16 8M10 8h6v6'/%3E%3C/svg%3E");
+	--iw-drop: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z'/%3E%3C/svg%3E");
+	--iw-platelets: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='8' cy='9' r='3'/%3E%3Ccircle cx='16.5' cy='8' r='2.5'/%3E%3Ccircle cx='13.5' cy='16' r='3.5'/%3E%3C/svg%3E");
+	--iw-plasma: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 3h10v11a5 5 0 0 1-10 0z'/%3E%3Cpath d='M7 9h10M12 19v2'/%3E%3C/svg%3E");
+}
+
+/* Keep focused and linked-to elements clear of the sticky header (WCAG 2.4.11) */
+html {
+	scroll-padding-top: 6rem;
+}
+
+/* Page shell: header, main, footer, with the footer kept at the bottom */
+.wp-site-blocks {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
 	min-height: 100svh;
-	padding-block: var(--wp--preset--spacing--40);
 	background:
-		radial-gradient(ellipse 70% 45% at 85% -5%, var(--wp--preset--color--primary-soft) 0%, transparent 70%),
-		var(--wp--preset--color--base);
+		radial-gradient(ellipse 60% 40% at 90% 0%, var(--glwp-blush) 0%, transparent 70%) no-repeat,
+		var(--glwp-base);
 }
 
-.givelifewp-site > * {
-	width: 100%;
+.wp-site-blocks > * {
+	margin-block: 0;
 }
 
 .givelifewp-main {
 	flex: 1 0 auto;
-	padding-block: var(--wp--preset--spacing--60);
+	padding-block: clamp(2rem, 5vw, 3.5rem) var(--glwp-gap);
 }
 
-/* Header */
+.givelifewp-main > * + * {
+	margin-block-start: var(--wp--preset--spacing--40);
+}
+
+/* Shared bits */
+.givelifewp-icon,
+.givelifewp-stat::before,
+.givelifewp-way::before,
+.givelifewp-checks li::before,
+.givelifewp-services a::after {
+	content: "";
+	display: inline-block;
+	flex: none;
+	background: currentColor;
+	-webkit-mask: var(--i) center / contain no-repeat;
+	mask: var(--i) center / contain no-repeat;
+}
+
+.givelifewp-display em,
+.givelifewp-h2 em,
+.givelifewp-foot__principle em {
+	color: var(--glwp-red);
+	font-style: italic;
+}
+
+.givelifewp-eyebrow,
+.givelifewp-eyebrow a {
+	margin: 0;
+	color: var(--glwp-red);
+	font-family: var(--wp--preset--font-family--body);
+	font-size: 0.75rem;
+	font-style: normal;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.givelifewp-display {
+	margin: 0;
+	font-size: clamp(2.75rem, 1.6rem + 4.6vw, 5.25rem);
+	font-weight: 500;
+	line-height: 1.02;
+	letter-spacing: -0.025em;
+	text-wrap: balance;
+}
+
+.givelifewp-h2,
+.givelifewp-content > h2 {
+	font-size: clamp(1.875rem, 1.3rem + 2.2vw, 3rem);
+	line-height: 1.08;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+
+.givelifewp-lead {
+	margin: 0;
+	color: var(--glwp-muted);
+	font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+	line-height: 1.55;
+	text-wrap: pretty;
+}
+
+.givelifewp-muted {
+	color: var(--glwp-muted);
+	font-size: 0.9375rem;
+}
+
+.givelifewp-more a,
+.givelifewp-back a {
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.givelifewp-more a::after {
+	content: " →";
+	content: " →" / "";
+	display: inline-block;
+	transition: transform 200ms var(--glwp-ease);
+}
+
+.givelifewp-more a:hover::after {
+	transform: translateX(0.25em);
+}
+
+/* Buttons */
+.wp-block-buttons {
+	gap: 0.75rem;
+}
+
+.wp-element-button,
+.wp-block-button__link {
+	box-shadow: 0 10px 24px -12px rgb(165 28 36 / 0.7);
+	transition: background-color 180ms ease, color 180ms ease, transform 180ms var(--glwp-ease), box-shadow 180ms ease;
+}
+
+.wp-block-button__link:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 14px 28px -12px rgb(165 28 36 / 0.75);
+}
+
+.wp-block-button__link:active {
+	transform: translateY(0) scale(0.98);
+}
+
+.is-style-outline .wp-block-button__link {
+	box-shadow: none;
+}
+
+.is-style-outline .wp-block-button__link:hover {
+	background: var(--glwp-red);
+	color: #fff;
+}
+
+/* Header: sticky, frosted */
+.givelifewp-header {
+	position: sticky;
+	top: 0;
+	z-index: 50;
+	padding: 0.85rem var(--wp--style--root--padding-right, 1.5rem) 0.85rem var(--wp--style--root--padding-left, 1.5rem);
+	background: rgb(251 247 242 / 0.82);
+	-webkit-backdrop-filter: saturate(1.4) blur(14px);
+	backdrop-filter: saturate(1.4) blur(14px);
+	border-bottom: 1px solid rgb(35 28 30 / 0.06);
+}
+
+.admin-bar .givelifewp-header {
+	top: var(--wp-admin--admin-bar--height, 32px);
+}
+
 .givelifewp-bar {
+	max-width: var(--wp--style--global--wide-size);
+	margin-inline: auto;
 	align-items: center;
 	gap: var(--wp--preset--spacing--30);
 }
 
-.givelifewp-site .givelifewp-wordmark {
+.givelifewp-wordmark {
 	margin: 0;
 	font-family: var(--wp--preset--font-family--heading);
 	font-size: 1.375rem;
 	font-weight: 600;
-	letter-spacing: -0.01em;
+	letter-spacing: -0.015em;
 }
 
 .givelifewp-wordmark a {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45rem;
 	color: inherit;
 	text-decoration: none;
 }
 
+.givelifewp-wordmark a::before {
+	content: "";
+	width: 0.7em;
+	height: 0.7em;
+	border-radius: 50% 0 50% 50%;
+	background: var(--glwp-red);
+	transform: rotate(-45deg) translateY(0.04em);
+}
+
 .givelifewp-nav a {
-	color: var(--wp--preset--color--contrast);
+	color: var(--glwp-ink);
 	text-decoration: none;
-	text-underline-offset: 0.3em;
+	text-underline-offset: 0.35em;
+	text-decoration-thickness: 2px;
 }
 
 .givelifewp-nav a:hover,
-.givelifewp-nav .current-menu-item > a,
 .givelifewp-nav a[aria-current="page"] {
-	color: var(--wp--preset--color--primary);
+	color: var(--glwp-red);
 	text-decoration: underline;
 }
 
-.givelifewp-nav .givelifewp-nav__cta > a {
-	padding: 0.45em 1em;
-	border: 1.5px solid var(--wp--preset--color--primary);
+.givelifewp-nav .givelifewp-nav__cta > a.wp-block-navigation-item__content {
+	padding: 0.55em 1.1em;
 	border-radius: 999px;
-	color: var(--wp--preset--color--primary);
+	background: var(--glwp-red);
+	color: #fff;
 	font-weight: 600;
+	text-decoration: none;
+	transition: background-color 180ms ease;
 }
 
-.givelifewp-nav .givelifewp-nav__cta > a:hover {
-	background: var(--wp--preset--color--primary);
+.givelifewp-nav .givelifewp-nav__cta > a.wp-block-navigation-item__content:hover {
+	background: var(--glwp-red-dark);
 	color: #fff;
 	text-decoration: none;
 }
 
 .givelifewp-nav .wp-block-navigation__responsive-container.is-menu-open {
 	padding: var(--wp--preset--spacing--40);
-	background: var(--wp--preset--color--base);
+	background: var(--glwp-base);
 }
 
 .givelifewp-nav .is-menu-open .wp-block-navigation__responsive-container-content,
@@ -98,163 +274,315 @@
 	font-size: 1rem;
 }
 
-/* Type */
-.givelifewp-site .givelifewp-title {
-	text-wrap: balance;
+/* Home hero */
+.givelifewp-hero {
+	display: grid;
+	gap: clamp(2rem, 5vw, 4rem);
+	align-items: center;
+	padding-block: clamp(1rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem);
 }
 
-.givelifewp-site .givelifewp-lead {
-	line-height: 1.55;
-	text-wrap: pretty;
+@media (min-width: 900px) {
+	.givelifewp-hero {
+		grid-template-columns: 1.15fr 0.85fr;
+	}
 }
 
-.givelifewp-site .givelifewp-label,
-.givelifewp-site .givelifewp-label a {
+.givelifewp-hero__text > * + * {
+	margin-block-start: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.givelifewp-hero__text .wp-block-buttons {
+	padding-top: 0.25rem;
+}
+
+.givelifewp-hero__media {
+	position: relative;
+	max-width: 34rem;
+	justify-self: center;
+	width: 100%;
+}
+
+.givelifewp-drop-mask,
+.givelifewp-hero__media .wp-block-image {
 	margin: 0;
-	color: var(--wp--preset--color--primary);
-	font-family: var(--wp--preset--font-family--body);
-	font-size: 0.75rem;
-	font-style: normal;
-	font-weight: 600;
-	letter-spacing: 0.12em;
-	text-decoration: none;
-	text-transform: uppercase;
+	aspect-ratio: 1;
+	overflow: hidden;
+	border-radius: 50% 0 50% 50%;
+	background: var(--glwp-blush);
+	box-shadow: var(--glwp-shadow);
 }
 
-.givelifewp-main h2 {
-	margin-block-start: var(--wp--preset--spacing--60);
+.givelifewp-drop-mask img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
-.givelifewp-main h3 {
-	margin-block-start: var(--wp--preset--spacing--50);
-	font-size: var(--wp--preset--font-size--large);
+.givelifewp-badge {
+	position: absolute;
+	left: 0;
+	bottom: 6%;
+	max-width: 16rem;
+	margin: 0;
+	padding: 0.9rem 1.1rem 0.9rem 4rem;
+	border-radius: 16px;
+	background: #fff;
+	box-shadow: var(--glwp-shadow);
+	font-size: 0.875rem;
+	line-height: 1.35;
 }
 
-.givelifewp-main h2:not([class*="font-size"]) {
-	font-size: var(--wp--preset--font-size--x-large);
+.givelifewp-badge::before {
+	content: "";
+	position: absolute;
+	left: 1rem;
+	top: 50%;
+	margin-top: -1.25rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 50%;
+	background: var(--glwp-red) var(--iw-drop) center / 1.25rem no-repeat;
 }
 
-.givelifewp-main li + li {
-	margin-block-start: 0.35rem;
+.givelifewp-badge strong {
+	color: var(--glwp-red);
 }
 
-.givelifewp-site .givelifewp-more a,
-.givelifewp-site .givelifewp-back a {
-	font-weight: 600;
-	text-decoration: none;
-}
-
-.givelifewp-site .givelifewp-more a::after {
-	content: " →";
-	display: inline-block;
-	transition: transform 160ms ease;
-}
-
-.givelifewp-site .givelifewp-more a:hover::after {
-	transform: translateX(0.2em);
-}
-
-/* Buttons */
-.givelifewp-site .wp-block-buttons {
-	margin-block-start: var(--wp--preset--spacing--40);
-}
-
-.givelifewp-site .wp-block-button__link {
-	transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
-}
-
-.givelifewp-site .wp-block-button__link:active {
-	transform: scale(0.98);
-}
-
-.givelifewp-site .is-style-outline .wp-block-button__link:hover {
-	background: var(--wp--preset--color--primary);
-	color: #fff;
-}
-
-/* Home sections */
-.givelifewp-hero > * + * {
-	margin-block-start: var(--wp--preset--spacing--40);
-}
-
-.givelifewp-site .givelifewp-section {
-	margin-block-start: var(--wp--preset--spacing--60);
-}
-
-.givelifewp-section > .givelifewp-label + * {
-	margin-block-start: 0.6rem;
-}
-
-.givelifewp-section h2 {
+/* Give blood. Give hope. Give life. */
+.givelifewp-main > .givelifewp-statement {
 	margin-block-start: 0;
 }
 
-.givelifewp-site .givelifewp-principles {
-	margin-block-start: var(--wp--preset--spacing--50);
-	padding: 0 0 0 1.1rem;
-	border-left: 2px solid var(--wp--preset--color--primary-soft);
-	list-style: none;
+.givelifewp-statement {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.2em 0.9em;
+	margin: 0;
+	padding: clamp(1.75rem, 4vw, 2.75rem) var(--wp--preset--spacing--40);
+	background: var(--glwp-ink);
+	color: var(--glwp-base);
 	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--large);
-	line-height: 1.4;
+	font-size: clamp(1.75rem, 1rem + 3.4vw, 3.75rem);
+	line-height: 1.1;
+	letter-spacing: -0.02em;
+	list-style: none;
 }
 
-.givelifewp-site .givelifewp-principles li + li {
-	margin-block-start: 0;
+.givelifewp-statement li {
+	display: flex;
+	align-items: center;
+	gap: 0.9em;
 }
 
-.givelifewp-principles li:last-child {
-	color: var(--wp--preset--color--primary);
+.givelifewp-statement li + li::before {
+	content: "";
+	width: 0.22em;
+	height: 0.22em;
+	border-radius: 50%;
+	background: var(--glwp-red);
+}
+
+.givelifewp-statement li:last-child {
+	color: #F2A7A0;
 	font-style: italic;
 }
 
-/* Fact tiles and ways to give */
-.givelifewp-site .givelifewp-facts,
-.givelifewp-site .givelifewp-ways {
+/* Sections */
+.givelifewp-main > .givelifewp-section,
+.givelifewp-main > .givelifewp-split,
+.givelifewp-main > .givelifewp-band,
+.givelifewp-main > .givelifewp-origin {
+	margin-block-start: var(--glwp-gap);
+}
+
+.givelifewp-section > .givelifewp-eyebrow + *,
+.givelifewp-split__text > .givelifewp-eyebrow + * {
+	margin-block-start: 0.75rem;
+}
+
+.givelifewp-section > * + * {
+	margin-block-start: var(--wp--preset--spacing--30);
+}
+
+.givelifewp-section .givelifewp-h2 {
+	max-width: 22ch;
+	margin-block-end: var(--wp--preset--spacing--50);
+}
+
+.givelifewp-section__head {
+	align-items: flex-end;
+	margin-block-end: var(--wp--preset--spacing--40);
+}
+
+.givelifewp-section__head > * {
+	margin: 0 !important;
+}
+
+/* Why it matters: text beside the numbers */
+.givelifewp-why {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-	gap: var(--wp--preset--spacing--30);
-	margin-block-start: var(--wp--preset--spacing--40);
+	gap: var(--wp--preset--spacing--50);
+	align-items: start;
+}
+
+@media (min-width: 900px) {
+	.givelifewp-why {
+		grid-template-columns: 5fr 6fr;
+		gap: clamp(3rem, 6vw, 6rem);
+	}
+}
+
+.givelifewp-why__text > * + * {
+	margin-block-start: var(--wp--preset--spacing--30);
+}
+
+.givelifewp-why .givelifewp-h2 {
+	margin-block-end: 0;
+}
+
+/* Stat cards */
+.givelifewp-stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+	gap: 0.75rem;
+	margin: 0;
 	padding: 0;
 	list-style: none;
 }
 
-.givelifewp-site .givelifewp-facts li,
-.givelifewp-site .givelifewp-ways li {
+.givelifewp-stat {
+	--i: var(--i-people);
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+	margin: 0 !important;
+	padding: 1.25rem 1.25rem 1.35rem;
+	border-radius: var(--glwp-radius);
+	background: #fff;
+	box-shadow: var(--glwp-shadow);
+	font-size: 1rem;
+	line-height: 1.55;
+	color: #4A4044;
+}
+
+.givelifewp-stat span {
+	max-width: 34ch;
+	text-wrap: pretty;
+}
+
+.givelifewp-stat::before {
+	width: 1.5rem;
+	height: 1.5rem;
+	margin-bottom: 0.4rem;
+	color: var(--glwp-red);
+}
+
+.givelifewp-stat--time { --i: var(--i-clock); }
+.givelifewp-stat--recover { --i: var(--i-pulse); }
+
+.givelifewp-stat strong {
+	color: var(--glwp-ink);
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: clamp(1.875rem, 1.4rem + 1.6vw, 2.5rem);
+	font-weight: 600;
+	line-height: 1;
+	letter-spacing: -0.02em;
+	font-variant-numeric: lining-nums;
+	white-space: nowrap;
+}
+
+.givelifewp-why .givelifewp-stats,
+.givelifewp-content > .givelifewp-stats {
+	grid-template-columns: 1fr;
+}
+
+/* Side-by-side number and text only when the list is wide enough */
+.givelifewp-why .givelifewp-stats,
+.givelifewp-content > .givelifewp-stats {
+	container-type: inline-size;
+}
+
+@container (min-width: 36rem) {
+	.givelifewp-why .givelifewp-stat,
+	.givelifewp-content > .givelifewp-stats .givelifewp-stat {
+		display: grid;
+		grid-template-columns: auto 12rem 1fr;
+		align-items: center;
+		gap: 1.5rem;
+		padding: 1.5rem 1.75rem;
+	}
+
+	.givelifewp-why .givelifewp-stat span,
+	.givelifewp-content > .givelifewp-stats .givelifewp-stat span {
+		padding-left: 1.5rem;
+		border-left: 1px solid var(--glwp-line);
+	}
+
+	.givelifewp-why .givelifewp-stat::before,
+	.givelifewp-content > .givelifewp-stats .givelifewp-stat::before {
+		margin: 0;
+	}
+}
+
+.givelifewp-content > .givelifewp-stats {
+	margin-block: 0 var(--wp--preset--spacing--50);
+}
+
+/* Ways to give (home) */
+.givelifewp-ways {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+	gap: 1rem;
 	margin: 0;
-	padding: var(--wp--preset--spacing--30) var(--wp--preset--spacing--30) calc(var(--wp--preset--spacing--30) * 1.25);
-	border-radius: 12px;
-	background: var(--wp--preset--color--surface);
+	padding: 0;
+	list-style: none;
+}
+
+.givelifewp-ways .givelifewp-way {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+	margin: 0;
+	padding: 1.75rem 1.5rem 1.75rem;
+	border-radius: var(--glwp-radius);
+	background: var(--glwp-linen);
+	color: var(--glwp-muted);
 	font-size: 0.9375rem;
 	line-height: 1.5;
+	transition: transform 240ms var(--glwp-ease), box-shadow 240ms ease, background-color 240ms ease;
 }
 
-.givelifewp-facts strong,
-.givelifewp-ways strong {
-	display: block;
-	margin-bottom: 0.3rem;
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--large);
-	font-weight: 600;
-	line-height: 1.2;
+.givelifewp-way {
+	--i: var(--i-drop);
+	--iw: var(--iw-drop);
 }
 
-.givelifewp-facts strong {
-	color: var(--wp--preset--color--primary);
+.givelifewp-way--platelets { --i: var(--i-platelets); --iw: var(--iw-platelets); }
+.givelifewp-way--plasma { --i: var(--i-plasma); --iw: var(--iw-plasma); }
+
+.givelifewp-ways .givelifewp-way::before {
+	width: 3rem;
+	height: 3rem;
+	margin-bottom: 0.75rem;
+	border-radius: 50%;
+	background: var(--glwp-red) var(--iw) center / 1.5rem no-repeat;
+	-webkit-mask: none;
+	mask: none;
+}
+
+.givelifewp-ways .givelifewp-way:hover {
+	transform: translateY(-4px);
+	background: #fff;
+	box-shadow: var(--glwp-shadow);
 }
 
 .givelifewp-ways a {
-	color: var(--wp--preset--color--contrast);
+	color: var(--glwp-ink);
 	text-decoration: none;
-}
-
-.givelifewp-ways li {
-	position: relative;
-	transition: background-color 160ms ease;
-}
-
-.givelifewp-ways li:hover {
-	background: var(--wp--preset--color--primary-soft);
 }
 
 .givelifewp-ways a::after {
@@ -269,69 +597,500 @@
 }
 
 .givelifewp-ways li:has(a:focus-visible) {
-	outline: 2px solid var(--wp--preset--color--primary);
+	outline: 2px solid var(--glwp-red);
 	outline-offset: 3px;
 }
 
-/* Reminder signup and origin story */
-.givelifewp-site .givelifewp-reminder {
-	padding: var(--wp--preset--spacing--50);
-	border-radius: 16px;
-	background: var(--wp--preset--color--surface);
-}
-
-.givelifewp-reminder > * + * {
-	margin-block-start: var(--wp--preset--spacing--30);
-}
-
-.givelifewp-site .givelifewp-origin {
-	margin-block-start: var(--wp--preset--spacing--60);
+.givelifewp-ways strong {
 	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--large);
-	font-style: italic;
-	line-height: 1.45;
+	font-size: 1.625rem;
+	font-weight: 600;
+	letter-spacing: -0.015em;
 }
 
-.givelifewp-origin > * + * {
-	margin-block-start: 0.4rem;
+.givelifewp-way__meta {
+	color: var(--glwp-red);
+	font-size: 0.8125rem;
+	font-weight: 700;
 }
 
-/* Call to action and notes */
-.givelifewp-site .givelifewp-cta {
-	margin-block-start: var(--wp--preset--spacing--60);
-	padding: var(--wp--preset--spacing--50);
-	border-radius: 16px;
-	background: var(--wp--preset--color--primary-soft);
+/* Photo + steps */
+.givelifewp-split {
+	display: grid;
+	gap: clamp(2rem, 5vw, 5rem);
+	align-items: center;
 }
 
-.givelifewp-cta > * + * {
+@media (min-width: 900px) {
+	.givelifewp-split {
+		grid-template-columns: 0.9fr 1.1fr;
+	}
+}
+
+.givelifewp-rounded {
+	margin: 0;
+	overflow: hidden;
+	border-radius: 28px;
+	box-shadow: var(--glwp-shadow);
+}
+
+.givelifewp-split .givelifewp-rounded {
+	aspect-ratio: 4 / 5;
+	max-height: 38rem;
+}
+
+.givelifewp-rounded img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.givelifewp-split__text > * + * {
+	margin-block-start: var(--wp--preset--spacing--40);
+}
+
+.givelifewp-steps {
+	counter-reset: glwp-step;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.givelifewp-steps li {
+	counter-increment: glwp-step;
+	position: relative;
+	margin: 0;
+	padding: 0.95rem 0 0.95rem 3.5rem;
+	border-bottom: 1px solid var(--glwp-line);
+	color: var(--glwp-muted);
+}
+
+.givelifewp-steps li::before {
+	content: counter(glwp-step);
+	position: absolute;
+	left: 0;
+	top: 0.85rem;
+	display: grid;
+	place-items: center;
+	width: 2.25rem;
+	height: 2.25rem;
+	border-radius: 50%;
+	background: var(--glwp-blush);
+	color: var(--glwp-red);
+	font-family: var(--wp--preset--font-family--heading);
+	font-weight: 700;
+}
+
+.givelifewp-steps strong {
+	color: var(--glwp-ink);
+}
+
+/* Steps as cards (first-time page) */
+.givelifewp-steps--cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+	gap: 0.75rem;
+}
+
+.givelifewp-steps--cards li {
+	padding: 1.25rem 1.25rem 1.35rem;
+	border: 0;
+	border-radius: var(--glwp-radius);
+	background: #fff;
+	box-shadow: var(--glwp-shadow);
+	font-size: 0.9375rem;
+	line-height: 1.5;
+}
+
+.givelifewp-steps--cards li::before {
+	position: static;
+	margin-bottom: 0.75rem;
+}
+
+.givelifewp-steps--cards strong {
+	display: block;
+	margin-bottom: 0.2rem;
+	font-size: 1.0625rem;
+}
+
+/* Full-width colour bands */
+.givelifewp-band {
+	position: relative;
+	overflow: hidden;
+	padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.givelifewp-band > * + * {
 	margin-block-start: var(--wp--preset--spacing--30);
 }
 
-.givelifewp-site .givelifewp-cta h2 {
-	margin-block-start: 0;
+.givelifewp-band--red {
+	background: var(--glwp-red);
+	color: #fff;
 }
 
-.givelifewp-site .givelifewp-note {
-	margin-block-start: var(--wp--preset--spacing--50);
-	padding: var(--wp--preset--spacing--30) var(--wp--preset--spacing--40);
-	border-left: 3px solid var(--wp--preset--color--primary);
-	border-radius: 0 12px 12px 0;
-	background: var(--wp--preset--color--surface);
+.givelifewp-band--red::after {
+	content: "";
+	position: absolute;
+	right: -6rem;
+	top: -5rem;
+	width: 26rem;
+	height: 26rem;
+	border-radius: 50% 0 50% 50%;
+	background: rgb(255 255 255 / 0.07);
+	transform: rotate(-45deg);
+	pointer-events: none;
+}
+
+.givelifewp-band--red .givelifewp-eyebrow {
+	color: #F7C5BF;
+}
+
+.givelifewp-band--red .givelifewp-h2 {
+	color: #fff;
+}
+
+.givelifewp-band--red .givelifewp-signup__label {
+	color: #F7C5BF;
+}
+
+.givelifewp-band--red .givelifewp-signup__input {
+	border-color: transparent;
+}
+
+.givelifewp-band--red .givelifewp-signup__button {
+	background: var(--glwp-ink);
+}
+
+.givelifewp-band--red .givelifewp-signup__button:hover {
+	background: #000;
+}
+
+.givelifewp-band--red .givelifewp-signup__note,
+.givelifewp-band--red .givelifewp-signup__status,
+.givelifewp-band--red[data-state] .givelifewp-signup__status {
+	color: #F7D9D5;
+}
+
+.givelifewp-band--red a {
+	color: #fff;
+}
+
+/* Focus rings that stay visible on dark and red backgrounds */
+.givelifewp-band--red :focus-visible,
+.givelifewp-cta :focus-visible,
+.givelifewp-foot :focus-visible,
+.givelifewp-statement :focus-visible {
+	outline: 2px solid #fff !important;
+	outline-offset: 3px;
+}
+
+/* Origin story */
+.givelifewp-origin {
+	text-align: center;
+}
+
+.givelifewp-origin__quote {
+	margin-block-start: 1rem;
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: clamp(1.375rem, 1rem + 1.4vw, 2rem);
+	font-style: italic;
+	line-height: 1.4;
+	text-wrap: balance;
+}
+
+.givelifewp-origin__quote::before {
+	content: "“";
+	content: "“" / "";
+	display: block;
+	height: 0.55em;
+	color: var(--glwp-red);
+	font-size: 4em;
+	font-style: normal;
+	line-height: 1;
+}
+
+/* Post cards */
+.givelifewp-posts .wp-block-post-template {
+	gap: 1.5rem;
+}
+
+.givelifewp-post-card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+	height: 100%;
+}
+
+.givelifewp-post-card > * {
+	margin: 0 !important;
+}
+
+.givelifewp-post-card .wp-block-post-featured-image {
+	overflow: hidden;
+	margin-bottom: 0.4rem !important;
+	border-radius: var(--glwp-radius);
+	background: var(--glwp-linen);
+}
+
+.givelifewp-post-card .wp-block-post-featured-image img {
+	transition: transform 600ms var(--glwp-ease);
+}
+
+.givelifewp-post-card:hover .wp-block-post-featured-image img {
+	transform: scale(1.04);
+}
+
+.givelifewp-post-card .wp-block-post-title {
+	font-size: var(--wp--preset--font-size--large);
+	line-height: 1.25;
+}
+
+.givelifewp-post-card .wp-block-post-title a {
+	color: var(--glwp-ink);
+	text-decoration: none;
+}
+
+.givelifewp-post-card .wp-block-post-title a:hover {
+	color: var(--glwp-red);
+}
+
+.givelifewp-post-card .wp-block-post-excerpt {
+	color: var(--glwp-muted);
 	font-size: 0.9375rem;
 }
 
+.givelifewp-main .wp-block-query-pagination {
+	margin-block-start: var(--wp--preset--spacing--50);
+}
+
+/* Chips */
+.givelifewp-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.givelifewp-chips li {
+	margin: 0 !important;
+	padding: 0.4rem 0.9rem;
+	border: 1px solid var(--glwp-line);
+	border-radius: 999px;
+	background: #fff;
+	font-size: 0.875rem;
+	font-weight: 600;
+}
+
+.givelifewp-chips a {
+	color: var(--glwp-ink);
+	text-decoration: none;
+}
+
+.givelifewp-jump li:hover {
+	border-color: var(--glwp-red);
+}
+
+.givelifewp-next .givelifewp-chips {
+	margin-block: 0.75rem 1.25rem;
+}
+
+/* Inner page header */
+.givelifewp-pagehead {
+	display: grid;
+	gap: clamp(2rem, 5vw, 4rem);
+	align-items: center;
+	padding-block: clamp(0.5rem, 3vw, 2rem) clamp(1rem, 4vw, 3rem);
+}
+
+@media (min-width: 900px) {
+	.givelifewp-pagehead:has(.wp-block-post-featured-image) {
+		grid-template-columns: 1.3fr 0.7fr;
+	}
+}
+
+.givelifewp-pagehead__text > * + * {
+	margin-block-start: 1.25rem;
+}
+
+.givelifewp-pagehead__text .givelifewp-meta {
+	gap: 1rem;
+}
+
+.givelifewp-pagehead__media {
+	width: 100%;
+	max-width: 26rem;
+	justify-self: center;
+}
+
+@media (max-width: 899px) {
+	.givelifewp-pagehead__media {
+		max-width: 16rem;
+		justify-self: start;
+	}
+
+	.givelifewp-hero__media {
+		max-width: 24rem;
+	}
+}
+
+.givelifewp-pagehead--simple .givelifewp-pagehead__text {
+	max-width: 46rem;
+}
+
+/* Long-form content */
+.givelifewp-content > h2 {
+	margin-block-start: var(--glwp-gap);
+}
+
+.givelifewp-content > h2::before {
+	content: "";
+	display: block;
+	width: 2.5rem;
+	height: 4px;
+	margin-bottom: 1.1rem;
+	border-radius: 2px;
+	background: var(--glwp-red);
+}
+
+.givelifewp-content > h2:first-child,
+.givelifewp-content > .givelifewp-stats + h2 {
+	margin-block-start: var(--wp--preset--spacing--50);
+}
+
+.givelifewp-content h3 {
+	font-size: var(--wp--preset--font-size--x-large);
+	letter-spacing: -0.015em;
+}
+
+.givelifewp-content li + li {
+	margin-block-start: 0.4rem;
+}
+
+/* Cards in content */
+.givelifewp-card {
+	position: relative;
+	padding: clamp(1.5rem, 3vw, 2.25rem);
+	border-radius: var(--glwp-radius);
+	background: #fff;
+	box-shadow: var(--glwp-shadow);
+	scroll-margin-top: 6rem;
+}
+
+.givelifewp-card > * + * {
+	margin-block-start: 1rem;
+}
+
+.givelifewp-card > h3 {
+	margin: 0;
+	padding-right: 3.5rem;
+}
+
+.givelifewp-card.givelifewp-way::before {
+	position: absolute;
+	top: clamp(1.5rem, 3vw, 2.25rem);
+	right: clamp(1.5rem, 3vw, 2.25rem);
+	width: 2rem;
+	height: 2rem;
+	color: var(--glwp-red);
+}
+
+.givelifewp-content > .givelifewp-card + .givelifewp-card {
+	margin-block-start: 1rem;
+}
+
+.givelifewp-card .givelifewp-chips li {
+	border-color: transparent;
+	background: var(--glwp-blush);
+	color: var(--glwp-red-dark);
+}
+
+.givelifewp-inline-photo {
+	aspect-ratio: 16 / 10;
+	border-radius: 16px;
+	box-shadow: none;
+}
+
+[id] {
+	scroll-margin-top: 6rem;
+}
+
+/* Who can give */
+.givelifewp-checks {
+	padding: 0;
+	list-style: none;
+}
+
+.givelifewp-checks li {
+	--i: var(--i-check);
+	display: flex;
+	gap: 0.75rem;
+	align-items: baseline;
+}
+
+.givelifewp-checks li::before {
+	width: 1.25rem;
+	height: 1.25rem;
+	color: var(--glwp-red);
+	transform: translateY(0.2em);
+}
+
+/* Blood types */
+.givelifewp-types {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	gap: 0.75rem;
+	padding: 0;
+	list-style: none;
+}
+
+.givelifewp-types li {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+	margin: 0 !important;
+	padding: 1.25rem;
+	border-radius: var(--glwp-radius);
+	background: var(--glwp-linen);
+	color: var(--glwp-muted);
+	font-size: 0.9375rem;
+	line-height: 1.5;
+}
+
+.givelifewp-types strong {
+	display: grid;
+	place-items: center;
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 50% 0 50% 50%;
+	background: var(--glwp-red);
+	color: #fff;
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: 1.375rem;
+}
+
 /* FAQ */
-.givelifewp-site .givelifewp-faq {
-	margin-block-start: 0;
-	border-bottom: 1px solid var(--wp--preset--color--surface);
+.givelifewp-faq {
+	margin-block-start: 0.6rem !important;
+	padding: 0 1.25rem;
+	border-radius: 16px;
+	background: #fff;
+	box-shadow: 0 1px 2px rgb(35 28 30 / 0.05);
+	transition: box-shadow 200ms ease;
+}
+
+.givelifewp-faq[open] {
+	box-shadow: var(--glwp-shadow);
 }
 
 .givelifewp-faq summary {
 	position: relative;
-	padding: 1rem 2rem 1rem 0;
+	padding: 1.1rem 2.5rem 1.1rem 0;
 	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--large);
+	font-size: 1.25rem;
 	font-weight: 500;
 	list-style: none;
 	cursor: pointer;
@@ -345,157 +1104,283 @@
 	content: "+";
 	position: absolute;
 	top: 50%;
-	right: 0.25rem;
-	color: var(--wp--preset--color--primary);
+	right: 0;
+	display: grid;
+	place-items: center;
+	width: 1.75rem;
+	height: 1.75rem;
+	border-radius: 50%;
+	background: var(--glwp-blush);
+	color: var(--glwp-red);
 	font-family: var(--wp--preset--font-family--body);
+	font-size: 1.125rem;
+	line-height: 1;
 	transform: translateY(-50%);
-	transition: transform 200ms var(--givelifewp-ease);
+	transition: transform 240ms var(--glwp-ease), background-color 200ms ease, color 200ms ease;
 }
 
 .givelifewp-faq[open] summary::after {
+	background: var(--glwp-red);
+	color: #fff;
 	transform: translateY(-50%) rotate(45deg);
 }
 
 .givelifewp-faq summary:hover {
-	color: var(--wp--preset--color--primary);
+	color: var(--glwp-red);
 }
 
 .givelifewp-faq summary:focus-visible {
-	outline: 2px solid var(--wp--preset--color--primary);
+	outline: 2px solid var(--glwp-red);
 	outline-offset: 3px;
+	border-radius: 8px;
 }
 
 .givelifewp-faq > :not(summary) {
-	margin: 0 0 1rem;
+	margin: 0 0 1.25rem;
+	color: var(--glwp-muted);
 }
 
-.givelifewp-site .givelifewp-steps {
-	padding-left: 1.25rem;
-}
-
-.givelifewp-steps li::marker {
-	color: var(--wp--preset--color--primary);
-	font-weight: 700;
-}
-
-.givelifewp-site .givelifewp-myths {
+/* Myths vs facts */
+.givelifewp-myths {
+	display: grid;
+	gap: 0.75rem;
 	padding: 0;
 	list-style: none;
 }
 
-.givelifewp-site .givelifewp-myths li {
-	padding-block: 0.75rem;
-	border-bottom: 1px solid var(--wp--preset--color--surface);
+.givelifewp-myths li {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin: 0 !important;
+	padding: 1.25rem 1.4rem;
+	border-radius: var(--glwp-radius);
+	background: #fff;
+	box-shadow: 0 1px 2px rgb(35 28 30 / 0.05);
 }
 
 .givelifewp-myths strong {
-	display: block;
+	color: var(--glwp-muted);
 	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--large);
+	font-size: 1.1875rem;
 	font-weight: 500;
+	text-decoration: line-through;
+	text-decoration-color: rgb(165 28 36 / 0.55);
+	text-decoration-thickness: 2px;
+}
+
+.givelifewp-myths span::before {
+	content: "Fact";
+	margin-right: 0.5rem;
+	padding: 0.15rem 0.55rem;
+	border-radius: 999px;
+	background: var(--glwp-red);
+	color: #fff;
+	font-size: 0.6875rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	vertical-align: 0.15em;
 }
 
 /* Donor service directory */
-.givelifewp-site .givelifewp-services {
+.givelifewp-jump {
+	margin-block-end: var(--wp--preset--spacing--30);
+}
+
+.givelifewp-services {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+	gap: 0.6rem;
 	padding: 0;
 	list-style: none;
 }
 
-.givelifewp-site .givelifewp-services li {
-	position: relative;
-	margin: 0;
-	padding: 0.6rem 0 0.6rem 30%;
-	border-bottom: 1px solid var(--wp--preset--color--surface);
+.givelifewp-services li {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+	margin: 0 !important;
+	padding: 1rem 1.15rem;
+	border-radius: 16px;
+	background: #fff;
+	box-shadow: 0 1px 2px rgb(35 28 30 / 0.05);
+	font-size: 0.9375rem;
+	transition: box-shadow 200ms ease;
+}
+
+.givelifewp-services li:hover {
+	box-shadow: var(--glwp-shadow);
 }
 
 .givelifewp-services strong {
-	position: absolute;
-	left: 0;
-	width: calc(30% - 1rem);
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: 1.1875rem;
 	font-weight: 600;
 }
 
-@media (max-width: 480px) {
-	.givelifewp-site .givelifewp-services li {
-		padding-left: 0;
-	}
-
-	.givelifewp-services strong {
-		position: static;
-		display: block;
-		width: auto;
-	}
-}
-
-/* Posts */
-.givelifewp-site .givelifewp-posts .wp-block-post-template {
-	padding: 0;
-	list-style: none;
-}
-
-.givelifewp-site .givelifewp-post-card {
-	padding-block: var(--wp--preset--spacing--30);
-	border-bottom: 1px solid var(--wp--preset--color--surface);
-}
-
-.givelifewp-post-card > * + * {
-	margin-block-start: 0.35rem;
-}
-
-.givelifewp-post-card .wp-block-post-title {
-	margin-block-start: 0.35rem;
-}
-
-.givelifewp-post-card .wp-block-post-title a {
-	color: var(--wp--preset--color--contrast);
+.givelifewp-services a {
+	--i: var(--i-out);
+	display: inline-flex;
+	gap: 0.3rem;
+	align-items: center;
+	color: var(--glwp-red);
+	font-weight: 600;
+	line-height: 1.35;
 	text-decoration: none;
 }
 
-.givelifewp-post-card .wp-block-post-title a:hover {
-	color: var(--wp--preset--color--primary);
+.givelifewp-services a:hover {
+	text-decoration: underline;
 }
 
-.givelifewp-meta {
-	gap: 1rem;
+.givelifewp-services a::after {
+	width: 0.9rem;
+	height: 0.9rem;
 }
 
-.givelifewp-main .wp-block-query-pagination {
-	margin-block-start: var(--wp--preset--spacing--40);
+/* Call to action and notes */
+.givelifewp-cta {
+	position: relative;
+	overflow: hidden;
+	margin-block-start: var(--glwp-gap) !important;
+	padding: clamp(2rem, 5vw, 3.25rem);
+	border-radius: 28px;
+	background: var(--glwp-ink);
+	color: var(--glwp-base);
+}
+
+.givelifewp-cta::after {
+	content: "";
+	position: absolute;
+	right: -4rem;
+	bottom: -6rem;
+	width: 16rem;
+	height: 16rem;
+	border-radius: 50% 0 50% 50%;
+	background: var(--glwp-red);
+	opacity: 0.85;
+	transform: rotate(-45deg);
+}
+
+.givelifewp-cta > * {
+	position: relative;
+	z-index: 1;
+	max-width: 30rem;
+}
+
+.givelifewp-cta > * + * {
+	margin-block-start: 1rem;
+}
+
+.givelifewp-cta h2 {
+	margin: 0;
+	color: #fff;
+}
+
+.givelifewp-cta .is-style-outline .wp-block-button__link {
+	border-color: rgb(255 255 255 / 0.5);
+	color: #fff;
+}
+
+.givelifewp-cta .is-style-outline .wp-block-button__link:hover {
+	border-color: #fff;
+	background: #fff;
+	color: var(--glwp-ink);
+}
+
+.givelifewp-note {
+	margin-block-start: var(--wp--preset--spacing--50) !important;
+	padding: 1.1rem 1.4rem;
+	border-left: 4px solid var(--glwp-red);
+	border-radius: 0 16px 16px 0;
+	background: var(--glwp-linen);
+	font-size: 0.9375rem;
 }
 
 /* Footer */
-.givelifewp-footer {
-	margin-block-start: var(--wp--preset--spacing--60);
-	padding-top: var(--wp--preset--spacing--40);
-	border-top: 1px solid var(--wp--preset--color--surface);
+.givelifewp-foot {
+	padding-block: clamp(3.5rem, 8vw, 6rem) 2rem;
+	background: var(--glwp-ink);
+	color: #CFC4C6;
 }
 
-.givelifewp-site .givelifewp-foot__list {
-	margin-block-start: 0.6rem;
+.givelifewp-foot > * + * {
+	margin-block-start: clamp(2.5rem, 5vw, 4rem);
+}
+
+.givelifewp-foot__principle {
+	margin: 0;
+	color: var(--glwp-base);
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: clamp(2.25rem, 1.2rem + 4.5vw, 5rem);
+	line-height: 1.02;
+	letter-spacing: -0.025em;
+}
+
+.givelifewp-foot__principle em {
+	color: #F2A7A0;
+}
+
+.givelifewp-foot__cols {
+	display: grid;
+	gap: 2rem;
+	padding-top: 2rem;
+	border-top: 1px solid rgb(255 255 255 / 0.12);
+}
+
+@media (min-width: 720px) {
+	.givelifewp-foot__cols {
+		grid-template-columns: 2fr 1fr 1fr;
+	}
+}
+
+.givelifewp-foot__about > * + * {
+	margin-block-start: 0.75rem;
+}
+
+.givelifewp-foot__about p {
+	max-width: 26rem;
+	font-size: 0.9375rem;
+}
+
+.givelifewp-foot .givelifewp-wordmark a {
+	color: var(--glwp-base);
+}
+
+.givelifewp-foot .givelifewp-eyebrow {
+	color: #F2A7A0;
+}
+
+.givelifewp-foot__list {
+	margin: 0.75rem 0 0;
 	padding: 0;
 	list-style: none;
 	font-size: 0.9375rem;
 }
 
 .givelifewp-foot__list li + li {
-	margin-block-start: 0.3rem;
+	margin-block-start: 0.45rem;
 }
 
-.givelifewp-foot__list a,
-.givelifewp-signup__note a {
+.givelifewp-foot a {
 	color: inherit;
-	text-underline-offset: 0.2em;
+	text-decoration: none;
 }
 
-.givelifewp-foot__list a:hover,
-.givelifewp-signup__note a:hover {
-	color: var(--wp--preset--color--primary);
+.givelifewp-foot__list a:hover {
+	color: #fff;
+	text-decoration: underline;
+	text-underline-offset: 0.25em;
 }
 
-.givelifewp-site .givelifewp-foot__principle {
-	margin-block-start: var(--wp--preset--spacing--40);
+.givelifewp-foot__fine {
+	margin: 0;
+	font-size: 0.8125rem;
+	opacity: 0.7;
 }
 
+/* Email signup */
 .givelifewp-signup {
 	margin-block-start: var(--wp--preset--spacing--50);
 }
@@ -528,14 +1413,14 @@
 	flex: 1 1 15rem;
 	min-width: 0;
 	padding: 0 1.25rem;
-	border: 1px solid #D8CBC3;
+	border: 1px solid #8A7F82;
 	background: #fff;
 	color: var(--wp--preset--color--contrast);
 	transition: border-color 160ms ease, box-shadow 160ms ease;
 }
 
 .givelifewp-signup__input::placeholder {
-	color: #8A7F82;
+	color: #6E6367;
 }
 
 .givelifewp-signup__input:focus {
@@ -607,74 +1492,52 @@
 	}
 }
 
-/* Drop motif: a rotated rounded square reads as a drop, pointed end up */
-.givelifewp-site .givelifewp-drop {
-	position: relative;
-	height: 64px !important;
-}
 
-.givelifewp-drop::before,
-.givelifewp-drop::after {
-	content: "";
-	position: absolute;
-	left: 6px;
-	bottom: 4px;
-	width: 36px;
-	height: 36px;
-}
-
-.givelifewp-drop::before {
-	border-radius: 50% 0 50% 50%;
-	background: var(--wp--preset--color--primary);
-	transform: rotate(-45deg);
-}
-
-.givelifewp-drop::after {
-	border: 1.5px solid var(--wp--preset--color--primary);
-	border-radius: 50%;
-	opacity: 0;
-}
-
+/* Motion */
 @media (prefers-reduced-motion: no-preference) {
-	/* Staggered, one-time reveal on the home page */
-	.givelifewp-home .givelifewp-header,
-	.givelifewp-hero > *,
-	.givelifewp-principles li {
-		animation: givelifewp-rise 800ms var(--givelifewp-ease) both;
+	.givelifewp-hero__text > *,
+	.givelifewp-pagehead__text > * {
+		animation: glwp-rise 800ms var(--glwp-ease) both;
 	}
 
-	.givelifewp-home .givelifewp-header { animation-name: givelifewp-fade; }
-	.givelifewp-hero > :nth-child(1) { animation-delay: 100ms; }
-	.givelifewp-hero > :nth-child(2) { animation-delay: 200ms; }
-	.givelifewp-hero > :nth-child(3) { animation-delay: 320ms; }
-	.givelifewp-hero > :nth-child(4) { animation-delay: 440ms; }
-	.givelifewp-hero > .givelifewp-principles { animation: none; }
-	.givelifewp-principles li:nth-child(1) { animation-delay: 600ms; }
-	.givelifewp-principles li:nth-child(2) { animation-delay: 740ms; }
-	.givelifewp-principles li:nth-child(3) { animation-delay: 920ms; }
+	.givelifewp-hero__text > :nth-child(2),
+	.givelifewp-pagehead__text > :nth-child(2) { animation-delay: 80ms; }
+	.givelifewp-hero__text > :nth-child(3),
+	.givelifewp-pagehead__text > :nth-child(3) { animation-delay: 160ms; }
+	.givelifewp-hero__text > :nth-child(4) { animation-delay: 240ms; }
 
-	/* Inner pages: a quick, quiet fade for the title */
-	.givelifewp-site:not(.givelifewp-home) .givelifewp-title {
-		animation: givelifewp-rise 600ms var(--givelifewp-ease) both;
+	.givelifewp-hero__media .wp-block-image,
+	.givelifewp-pagehead__media {
+		animation: glwp-drop-in 1100ms var(--glwp-ease) 120ms both;
 	}
 
-	/*
-	 * Two soft heartbeats after the reveal, then stillness.
-	 * Kept under five seconds so nothing moves indefinitely.
-	 */
-	.givelifewp-drop::before {
-		animation: givelifewp-beat 1.8s ease-in-out 1s 2;
+	.givelifewp-badge {
+		animation: glwp-rise 700ms var(--glwp-ease) 700ms both;
 	}
 
-	.givelifewp-drop::after {
-		animation: givelifewp-ring 1.8s ease-out 1s 2;
+	/* Two soft heartbeats on the badge drop, then stillness */
+	.givelifewp-badge::before {
+		animation: glwp-beat 1.6s ease-in-out 1.4s 2;
+	}
+
+	/* Scroll-linked reveal where supported; no JavaScript */
+	@supports (animation-timeline: view()) {
+		.givelifewp-section,
+		.givelifewp-split,
+		.givelifewp-origin,
+		.givelifewp-card,
+		.givelifewp-stat {
+			animation: glwp-rise linear both;
+			animation-timeline: view();
+			animation-range: entry 0% entry 35%;
+		}
 	}
 }
 
-@keyframes givelifewp-rise {
+@keyframes glwp-rise {
 	from {
 		opacity: 0;
-		transform: translateY(0.6rem);
+		transform: translateY(1rem);
 	}
 	to {
 		opacity: 1;
@@ -682,20 +1545,21 @@
 	}
 }
 
-@keyframes givelifewp-fade {
-	from { opacity: 0; }
-	to { opacity: 1; }
+@keyframes glwp-drop-in {
+	from {
+		opacity: 0;
+		transform: scale(0.94);
+		border-radius: 50%;
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
 }
 
-@keyframes givelifewp-beat {
-	0%, 40%, 100% { transform: rotate(-45deg) scale(1); }
-	12% { transform: rotate(-45deg) scale(1.07); }
-	24% { transform: rotate(-45deg) scale(0.99); }
-	32% { transform: rotate(-45deg) scale(1.04); }
+@keyframes glwp-beat {
+	0%, 40%, 100% { transform: scale(1); }
+	12% { transform: scale(1.12); }
+	24% { transform: scale(0.98); }
+	32% { transform: scale(1.06); }
 }
-
-@keyframes givelifewp-ring {
-	0% { opacity: 0.4; transform: scale(0.9); }
-	70%, 100% { opacity: 0; transform: scale(2.1); }
-}
-

@@ -1,15 +1,24 @@
-<!-- wp:group {"className":"givelifewp-site","layout":{"type":"constrained"}} -->
-<div class="wp-block-group givelifewp-site"><!-- wp:template-part {"slug":"header","tagName":"header","align":"wide","className":"givelifewp-header"} /-->
+<!-- wp:template-part {"slug":"header","tagName":"header","className":"givelifewp-header"} /-->
 
 <!-- wp:group {"tagName":"main","className":"givelifewp-main","layout":{"type":"constrained"}} -->
-<main class="wp-block-group givelifewp-main"><!-- wp:query {"queryId":2,"query":{"inherit":true,"perPage":10},"className":"givelifewp-posts"} -->
-<div class="wp-block-query givelifewp-posts"><!-- wp:post-template -->
-<!-- wp:group {"className":"givelifewp-post-card","layout":{"type":"constrained"}} -->
-<div class="wp-block-group givelifewp-post-card"><!-- wp:post-date {"className":"givelifewp-label"} /-->
+<main class="wp-block-group givelifewp-main"><!-- wp:group {"align":"wide","className":"givelifewp-pagehead givelifewp-pagehead--simple","layout":{"type":"default"}} -->
+<div class="wp-block-group alignwide givelifewp-pagehead givelifewp-pagehead--simple"><!-- wp:group {"className":"givelifewp-pagehead__text","layout":{"type":"default"}} -->
+<div class="wp-block-group givelifewp-pagehead__text"><!-- wp:heading {"level":1,"className":"givelifewp-display"} -->
+<h1 class="wp-block-heading givelifewp-display">News and reminders</h1>
+<!-- /wp:heading --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
 
-<!-- wp:post-title {"isLink":true,"fontSize":"large"} /-->
+<!-- wp:query {"queryId":2,"query":{"inherit":true,"perPage":12},"align":"wide","className":"givelifewp-posts"} -->
+<div class="wp-block-query alignwide givelifewp-posts"><!-- wp:post-template {"layout":{"type":"grid","columnCount":3,"minimumColumnWidth":"16rem"}} -->
+<!-- wp:group {"className":"givelifewp-post-card","layout":{"type":"default"}} -->
+<div class="wp-block-group givelifewp-post-card"><!-- wp:post-featured-image {"aspectRatio":"3/2","sizeSlug":"medium_large"} /-->
 
-<!-- wp:post-excerpt {"moreText":"Read more","excerptLength":30} /--></div>
+<!-- wp:post-date {"className":"givelifewp-eyebrow"} /-->
+
+<!-- wp:post-title {"level":2,"isLink":true} /-->
+
+<!-- wp:post-excerpt {"excerptLength":24} /--></div>
 <!-- /wp:group -->
 <!-- /wp:post-template -->
 
@@ -29,5 +38,4 @@
 <!-- /wp:query --></main>
 <!-- /wp:group -->
 
-<!-- wp:template-part {"slug":"footer","tagName":"footer","align":"wide","className":"givelifewp-footer"} /--></div>
-<!-- /wp:group -->
+<!-- wp:template-part {"slug":"footer","tagName":"footer","className":"givelifewp-footer"} /-->

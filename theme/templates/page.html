@@ -1,11 +1,17 @@
-<!-- wp:group {"className":"givelifewp-site","layout":{"type":"constrained"}} -->
-<div class="wp-block-group givelifewp-site"><!-- wp:template-part {"slug":"header","tagName":"header","align":"wide","className":"givelifewp-header"} /-->
+<!-- wp:template-part {"slug":"header","tagName":"header","className":"givelifewp-header"} /-->
 
 <!-- wp:group {"tagName":"main","className":"givelifewp-main","layout":{"type":"constrained"}} -->
-<main class="wp-block-group givelifewp-main"><!-- wp:post-title {"level":1,"className":"givelifewp-title","fontSize":"xx-large"} /-->
+<main class="wp-block-group givelifewp-main"><!-- wp:group {"align":"wide","className":"givelifewp-pagehead","layout":{"type":"default"}} -->
+<div class="wp-block-group alignwide givelifewp-pagehead"><!-- wp:group {"className":"givelifewp-pagehead__text","layout":{"type":"default"}} -->
+<div class="wp-block-group givelifewp-pagehead__text"><!-- wp:post-title {"level":1,"className":"givelifewp-display"} /-->
 
-<!-- wp:post-content {"layout":{"type":"constrained"}} /--></main>
+<!-- wp:post-excerpt {"className":"givelifewp-lead"} /--></div>
 <!-- /wp:group -->
 
-<!-- wp:template-part {"slug":"footer","tagName":"footer","align":"wide","className":"givelifewp-footer"} /--></div>
+<!-- wp:post-featured-image {"aspectRatio":"1","sizeSlug":"large","className":"givelifewp-pagehead__media givelifewp-drop-mask"} /--></div>
 <!-- /wp:group -->
+
+<!-- wp:post-content {"layout":{"type":"constrained"},"className":"givelifewp-content"} /--></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer","className":"givelifewp-footer"} /-->
