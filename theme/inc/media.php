@@ -60,6 +60,81 @@ add_filter(
 );
 
 /**
+ * Extra in-between widths for the theme's own images (photos and the header
+ * logo), so phones get a file close to the size they actually draw instead of
+ * jumping straight to 768 or 1024 pixels. Other uploads are left alone.
+ *
+ * @param int $attachment_id Attachment ID.
+ * @return int[] Widths in pixels.
+ */
+function givelifewp_extra_widths( $attachment_id ) {
+	if ( givelifewp_is_logo( $attachment_id ) ) {
+		return array( 180, 270, 340, 510 );
+	}
+	if ( in_array( (int) $attachment_id, array_map( 'intval', (array) get_option( 'givelifewp_media', array() ) ), true ) ) {
+		return array( 400, 500, 560, 640, 680, 720, 840, 960 );
+	}
+	return array();
+}
+
+/**
+ * Whether an attachment is the GiveLifeWP header logo.
+ *
+ * @param int $attachment_id Attachment ID.
+ * @return bool
+ */
+function givelifewp_is_logo( $attachment_id ) {
+	return (bool) preg_match( '/givelifewp-logo(-white)?\.[a-z]+$/', (string) get_attached_file( $attachment_id ) );
+}
+
+add_filter(
+	'intermediate_image_sizes_advanced',
+	function ( $sizes, $metadata, $attachment_id = 0 ) {
+		foreach ( givelifewp_extra_widths( $attachment_id ) as $width ) {
+			$sizes[ 'givelifewp-' . $width ] = array(
+				'width'  => $width,
+				'height' => 0,
+				'crop'   => false,
+			);
+		}
+		return $sizes;
+	},
+	10,
+	3
+);
+
+/**
+ * Rebuilds the image sizes of the theme photos and the logo, e.g. after new
+ * widths are added. Runs from the seeder, so prod catches up on its own.
+ */
+function givelifewp_regenerate_theme_images() {
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+
+	$ids  = array_map( 'intval', (array) get_option( 'givelifewp_media', array() ) );
+	$logo = get_posts(
+		array(
+			'post_type'      => 'attachment',
+			'post_status'    => 'inherit',
+			'posts_per_page' => 5,
+			'fields'         => 'ids',
+			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+				array(
+					'key'     => '_wp_attached_file',
+					'value'   => 'givelifewp-logo',
+					'compare' => 'LIKE',
+				),
+			),
+		)
+	);
+	foreach ( array_unique( array_merge( $ids, $logo ) ) as $id ) {
+		$file = get_attached_file( $id );
+		if ( $id && $file && file_exists( $file ) ) {
+			wp_update_attachment_metadata( $id, wp_generate_attachment_metadata( $id, $file ) );
+		}
+	}
+}
+
+/**
  * Imports any theme photo not yet in the media library.
  */
 function givelifewp_import_photos() {
@@ -148,7 +223,7 @@ function givelifewp_image_block( $key, $class = '', $size = 'large' ) {
  * Rewrites an <img> tag's loading hints and sizes.
  *
  * @param string $html  Block HTML.
- * @param bool   $lcp   Whether this image is the largest paint (load first).
+ * @param ?bool  $lcp   True: largest paint, load first. False: lazy. Null: load normally.
  * @param string $sizes Value for the sizes attribute.
  * @return string
  */
@@ -157,7 +232,15 @@ function givelifewp_img_hints( $html, $lcp, $sizes ) {
 		'/<img\s[^>]*>/',
 		function ( $m ) use ( $lcp, $sizes ) {
 			$tag = preg_replace( '/\s(loading|fetchpriority|decoding|sizes)="[^"]*"/', '', $m[0] );
-			$add = $lcp ? ' fetchpriority="high"' : ' loading="lazy"';
+			$add = '';
+			if ( true === $lcp ) {
+				$add = ' fetchpriority="high"';
+			} elseif ( false === $lcp ) {
+				$add = ' loading="lazy"';
+			} else {
+				// Above the fold but not the main paint: no lazy load, no priority boost.
+				$add = ' fetchpriority="auto"';
+			}
 			$add .= ' decoding="async"';
 			if ( $sizes ) {
 				$add .= ' sizes="' . esc_attr( $sizes ) . '"';
@@ -177,14 +260,19 @@ add_filter(
 	'render_block_core/image',
 	function ( $html, $block ) {
 		$class = $block['attrs']['className'] ?? '';
+		if ( false !== strpos( $class, 'givelifewp-logo' ) ) {
+			// Drawn 40px tall (32px on phones): about 168px or 135px wide.
+			return givelifewp_img_hints( $html, null, '(max-width: 599px) 135px, 168px' );
+		}
 		if ( false !== strpos( $class, 'givelifewp-lcp' ) ) {
-			return givelifewp_img_hints( $html, true, '(min-width: 900px) 34rem, 92vw' );
+			// Hero photo: capped at 34rem beside the text, 24rem when stacked on phones.
+			return givelifewp_img_hints( $html, true, '(min-width: 1256px) 483px, (min-width: 900px) calc(40vw - 24px), min(24rem, calc(100vw - 2.5rem))' );
 		}
 		if ( false !== strpos( $class, 'givelifewp-inline-photo' ) ) {
-			return givelifewp_img_hints( $html, false, '(min-width: 720px) 620px, 92vw' );
+			return givelifewp_img_hints( $html, false, '(min-width: 720px) 620px, calc(100vw - 5rem)' );
 		}
 		if ( false !== strpos( $class, 'givelifewp-rounded' ) ) {
-			return givelifewp_img_hints( $html, false, '(min-width: 900px) 40vw, 92vw' );
+			return givelifewp_img_hints( $html, false, '(min-width: 1256px) 486px, (min-width: 900px) calc(40vw - 24px), calc(100vw - 2.5rem)' );
 		}
 		return $html;
 	},
@@ -198,9 +286,9 @@ add_filter(
 		// Only the current page's own header photo loads first; cards in lists are lazy.
 		$post_id = (int) ( $instance->context['postId'] ?? 0 );
 		if ( ! is_singular() || get_queried_object_id() !== $post_id ) {
-			return givelifewp_img_hints( $html, false, '(min-width: 900px) 24rem, 92vw' );
+			return givelifewp_img_hints( $html, false, '(min-width: 900px) 24rem, calc(100vw - 2.5rem)' );
 		}
-		return givelifewp_img_hints( $html, true, '(min-width: 900px) 26rem, 92vw' );
+		return givelifewp_img_hints( $html, true, '(min-width: 900px) min(26rem, 30vw), min(16rem, calc(100vw - 2.5rem))' );
 	},
 	20,
 	3

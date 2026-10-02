@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const GIVELIFEWP_SEED_VERSION = 4;
+const GIVELIFEWP_SEED_VERSION = 6;
 
 /**
  * Pattern content by slug, or an empty string.
@@ -92,6 +92,9 @@ function givelifewp_seed_content() {
 	update_option( 'givelifewp_seed_lock', time(), false );
 
 	givelifewp_import_photos();
+	if ( (int) get_option( 'givelifewp_seeded', 0 ) < 6 ) {
+		givelifewp_regenerate_theme_images();
+	}
 
 	// Content comes from the theme's own pattern files, so skip kses.
 	kses_remove_filters();

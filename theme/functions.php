@@ -39,6 +39,17 @@ function givelifewp_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'givelifewp_enqueue_assets' );
 
 /**
+ * Inline every core block stylesheet used on the page (they're small), so
+ * none of them blocks rendering as a separate request.
+ */
+add_filter(
+	'styles_inline_size_limit',
+	function () {
+		return 60000;
+	}
+);
+
+/**
  * Preload the heading font: it draws the largest text on every page.
  */
 function givelifewp_preload_fonts() {

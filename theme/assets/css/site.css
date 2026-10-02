@@ -409,6 +409,19 @@ html {
 	background: var(--glwp-red);
 }
 
+/* Phones: one line each, no separator dots, so nothing wraps awkwardly */
+@media (max-width: 599px) {
+	.givelifewp-statement {
+		flex-direction: column;
+		align-items: center;
+		gap: 0.15em;
+	}
+
+	.givelifewp-statement li + li::before {
+		display: none;
+	}
+}
+
 .givelifewp-statement li:last-child {
 	color: #F2A7A0;
 	font-style: italic;
