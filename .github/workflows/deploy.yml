@@ -1,0 +1,60 @@
+name: Deploy theme
+
+# Theme files only. Never touches the database, uploads, wp-config or mu-plugins.
+# Connection details live in environment secrets (staging / production):
+#   SFTP_HOST, SFTP_PORT, SFTP_USER, SFTP_PASSWORD, SFTP_KNOWN_HOSTS, THEME_PATH
+
+on:
+  push:
+    branches: [main]
+    paths: ['theme/**']
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Where to deploy'
+        type: choice
+        options: [staging, production]
+        default: staging
+
+concurrency:
+  group: deploy-${{ github.event_name == 'push' && 'staging' || inputs.target }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event_name == 'push' && 'staging' || inputs.target }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Trust the server's host key
+        env:
+          SFTP_KNOWN_HOSTS: ${{ secrets.SFTP_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SFTP_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Mirror theme/ to the server
+        env:
+          SFTP_HOST: ${{ secrets.SFTP_HOST }}
+          SFTP_PORT: ${{ secrets.SFTP_PORT }}
+          SFTP_USER: ${{ secrets.SFTP_USER }}
+          LFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+          THEME_PATH: ${{ secrets.THEME_PATH }}
+        run: |
+          case "$THEME_PATH" in
+            */wp-content/themes/givelifewp) ;;
+            *) echo "THEME_PATH must end in /wp-content/themes/givelifewp"; exit 1 ;;
+          esac
+          lftp -c "
+            set net:max-retries 2;
+            set sftp:auto-confirm no;
+            set sftp:connect-program 'ssh -a -x -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts -p $SFTP_PORT';
+            open --env-password -u '$SFTP_USER' sftp://$SFTP_HOST;
+            mirror --reverse --delete --parallel=4 --no-perms theme/ '$THEME_PATH'
+          " > /dev/null
+          echo "Theme deployed."
